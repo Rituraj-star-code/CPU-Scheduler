@@ -1,0 +1,793 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+header {
+    background: linear-gradient(135deg,#111827,#2563eb);
+    color: white;
+    padding: 35px;
+    text-align: center;
+    position: relative;
+}
+
+
+.theme-btn {
+    position: absolute;
+    right: 30px;
+    top: 25px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    color: #111827;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.theme-btn:hover {
+    transform: scale(1.05);
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.panel {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+input,
+select {
+    padding: 11px 14px;
+    border-radius: 7px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    background: white;
+    color: #222;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+select {
+    cursor: pointer;
+}
+
+button {
+    padding: 11px 14px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    background: #e5e7eb;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        opacity 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+button:active {
+    transform: scale(0.97);
+    box-shadow: none;
+}
+
+.primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.25);
+}
+
+.primary:hover {
+    background: #1d4ed8;
+    opacity: 1;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+th,
+td {
+    padding: 13px 12px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background: linear-gradient(135deg,#0f172a,#334155);
+    color:white;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+tbody tr:nth-child(odd) {
+    background: white;
+}
+
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background: #eff6ff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+
+    transition:
+        background-color 0.15s ease,
+        transform 0.1s ease;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+    opacity: 1;
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.metric {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+
+    border: 1px solid #e5e7eb;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.metric:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.metric strong {
+    display: block;
+    font-size: 26px;
+    margin-top: 8px;
+    color: #1e293b;
+}
+
+.metric.waiting {
+    border-left: 4px solid #2563eb;
+}
+
+.metric.turnaround {
+    border-left: 4px solid #7c3aed;
+}
+
+.metric.response {
+    border-left: 4px solid #059669;
+}
+
+.metric.utilization {
+    border-left: 4px solid #16a34a;
+}
+
+.metric.idle {
+    border-left: 4px solid #f59e0b;
+}
+
+.metric.switches {
+    border-left: 4px solid #ef4444;
+}
+
+.gantt {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 25px;
+    padding: 8px 0;
+    min-height: 80px;
+}
+
+.gantt-block {
+    min-width: 80px;
+    padding: 15px 8px;
+    border: 1px solid white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.process-block {
+    background: #60a5fa;
+}
+
+.process-block {
+    background:linear-gradient(135deg,#60a5fa,#2563eb);
+    color:white;
+}
+
+.cs-block {
+    background: #f59e0b;
+}
+
+.time {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+@media(max-width: 700px) {
+
+    main {
+        padding: 10px;
+    }
+
+    .panel {
+        padding: 15px;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+}
+
+.cpu-dashboard {
+    margin: 35px 0px;
+}
+
+.cpu-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px;
+    background:linear-gradient(135deg,#111827,#1e40af);
+    color: white;
+    border-radius: 12px;
+}
+
+.cpu-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    background: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.cpu-state {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.cpu-process {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.cpu-info {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.cpu-info > div {
+    padding: 18px;
+    background: #9ca8b3;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.cpu-info span {
+    display: block;
+    font-size: 14px;
+}
+
+.cpu-info strong {
+    display: block;
+    font-size: 22px;
+    margin-top: 6px;
+}
+
+/* Spacing between CPU Dashboard and Gantt Chart */
+
+.cpu-dashboard {
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+.cpu-info {
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
+
+.gantt {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 0px;
+    padding: 15px 0;
+    min-height: 80px;
+}
+
+.gantt-title {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+.gantt + h3 {
+    margin-top: 30px;
+}
+
+.best-metric {
+    font-weight:bold;
+    background:#dcfce7;
+    color:#166534;
+    border:2px solid #22c55e;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark {
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+
+body.dark .panel {
+    background: #1e293b;
+    color: #e5e7eb;
+}
+
+
+body.dark input,
+body.dark select {
+    background: #334155;
+    color: white;
+    border-color: #475569;
+}
+
+
+body.dark table {
+    border-color: #475569;
+}
+
+
+body.dark th {
+    background: #020617;
+}
+
+
+body.dark tbody tr:nth-child(even) {
+    background: #334155;
+}
+
+
+body.dark tbody tr:nth-child(odd) {
+    background: #1e293b;
+}
+
+
+body.dark tbody tr:hover {
+    background: #475569;
+}
+
+
+body.dark .metric {
+    background: #334155;
+    border-color: #475569;
+}
+
+
+body.dark .metric strong {
+    color: white;
+}
+
+
+body.dark .cpu-info > div {
+    background: #334155;
+}
+
+
+body.dark .best-metric {
+    background: #14532d;
+    color: #bbf7d0;
+}
+
+/* ================================= */
+/* Live Process State Visualization   */
+/* ================================= */
+
+.process-state-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+
+    margin-top:20px;
+    margin-bottom: 35px;
+}
+
+.process-state-title {
+    margin-top: 30px;
+}
+
+/* Process Card */
+
+.process-card {
+    padding: 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e5e7eb;
+
+    background: white;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.07);
+
+    transition:
+        all 0.35s ease;
+}
+
+
+/* Header */
+
+.process-card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+/* PID */
+
+.process-pid {
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #1e293b;
+}
+
+
+/* State Badge */
+
+.process-state-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+
+/* Details */
+
+.process-details {
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap: 8px;
+}
+
+
+.process-details div {
+    text-align: center;
+    padding: 9px 5px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+
+.process-details span {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+
+.process-details strong {
+    font-size: 15px;
+    color: #1e293b;
+}
+
+
+/* ================================= */
+/* READY                              */
+/* ================================= */
+
+.process-card.ready {
+
+    background: #fffbeb;
+    border-left: 5px solid #f59e0b;
+}
+
+
+.process-card.ready .process-state-badge {
+
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+/* ================================= */
+/* RUNNING                            */
+/* ================================= */
+
+.process-card.running {
+
+    background: #f0fdf4;
+    border-left: 5px solid #16a34a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.18);
+}
+
+
+.process-card.running .process-state-badge {
+
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* ================================= */
+/* COMPLETED                          */
+/* ================================= */
+
+.process-card.completed {
+
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+}
+
+
+.process-card.completed .process-state-badge {
+
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* ===========================
+   Algorithm Performance Chart
+   =========================== */
+
+.performance-chart-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.performance-chart-section h3 {
+    margin-bottom: 20px;
+}
+
+
+/* Chart Buttons */
+
+.chart-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.chart-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+}
+
+.chart-btn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+
+/* Chart */
+
+.performance-chart {
+    width: 100%;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+.chart-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chart-item {
+    display: grid;
+    grid-template-columns: 170px 1fr 90px;
+    align-items: center;
+    gap: 12px;
+}
+
+.chart-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.bar-wrapper {
+    height: 32px;
+    background: #e2e8f0;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.chart-bar {
+    height: 100%;
+    min-width: 35px;
+
+    background: #60a5fa;
+
+    border-radius: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding-right: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+
+    transition:
+        width 0.4s ease;
+}
+
+.chart-best {
+    background: #22c55e;
+}
+
+.chart-trophy {
+    font-size: 13px;
+    font-weight: bold;
+    color: #166534;
+}
+
+
+/* Mobile */
+
+@media(max-width: 700px) {
+
+    .chart-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .chart-trophy {
+        margin-top: -2px;
+    }
+
+}
+
+
+/* Section separators inside Simulation Results */
+
+#results > h3 {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 25px;
+    margin-top: 30px;
+}
+
+body.dark .chart-label {
+    color: #ffffff;
+}

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CPU Scheduler Simulator</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <button id="themeToggle" class="theme-btn">
+        🌙 Dark Mode
+    </button>
+
+    <h1>CPU Scheduler Simulator</h1>
+
+    <p>
+        Visualize and compare CPU scheduling algorithms
+    </p>
+
+</header>
+
+
+<main>
+
+<section class="panel">
+
+    <h2>Process Configuration</h2>
+
+    <div class="form-row">
+
+        <input
+            id="arrival"
+            type="number"
+            placeholder="Arrival Time"
+            min="0"
+        >
+
+        <input
+            id="burst"
+            type="number"
+            placeholder="Burst Time"
+            min="1"
+        >
+
+        <input
+            id="priority"
+            type="number"
+            placeholder="Priority"
+            min="1"
+        >
+
+        <button id="addProcess">
+            Add Process
+        </button>
+
+    </div>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>PID</th>
+                <th>Arrival</th>
+                <th>Burst</th>
+                <th>Priority</th>
+                <th>Action</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="processTable">
+
+        </tbody>
+
+    </table>
+
+</section>
+
+
+<section class="panel">
+
+    <h2>Scheduler Configuration</h2>
+
+    <div class="form-row">
+
+        <select id="algorithm">
+
+
+            <option value="FCFS">FCFS</option>
+
+            <option value="SJF">SJF</option>
+
+            <option value="SRTF">SRTF</option>
+
+            <option value="PRIORITY">Priority Scheduling</option>
+
+            <option value="PREEMPTIVE_PRIORITY">Preemptive Priority</option>
+
+            <option value="RR">Round Robin</option>
+
+            <option value="MLQ">Multilevel Queue</option>
+
+            <option value="MLFQ">Multilevel Feedback Queue</option>
+
+        </select>
+
+
+        <input
+            id="quantum"
+            type="number"
+            min="1"
+            value="2"
+            placeholder="Time Quantum"
+        >
+
+
+        <input
+            id="contextSwitch"
+            type="number"
+            min="0"
+            value="0"
+            placeholder="Context Switch"
+        >
+
+        <input
+            id="starvationThreshold"
+            type="number"
+            min="1"
+            value="20"
+            placeholder="Starvation Threshold"
+        >
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            id="simulate"
+            class="primary"
+        >
+            ▶ Run Simulation
+        </button>
+
+        <button id="compare">
+            Compare Algorithms
+        </button>
+
+        <button id="random">
+            Generate Random Workload
+        </button>
+
+        <button id="clear">
+            Clear
+        </button>
+
+    </div>
+
+</section>
+
+
+<section
+    id="results"
+    class="panel hidden"
+>
+
+    <h2>Simulation Results</h2>
+
+    <div class="cpu-dashboard">
+
+        <h3>CPU Dashboard</h3>
+
+        <div class="cpu-box">
+
+            <div class="cpu-icon">CPU</div>
+
+            <div>
+                <div class="cpu-state" id="cpuState">
+                    IDLE
+                </div>
+
+                <div class="cpu-process" id="cpuProcess">
+                    No Process
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cpu-info">
+
+            <div>
+                <span>Current Time</span>
+                <strong id="currentTime">0</strong>
+            </div>
+
+            <div>
+                <span>CPU Utilization</span>
+                <strong id="liveUtilization">0%</strong>
+            </div>
+
+            <div>
+                <span>Context Switches</span>
+                <strong id="liveContextSwitches">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        id="metrics"
+        class="metrics"
+    ></div>
+
+    <h3 class="process-state-title">Live Process States</h3>
+    <div id="processStates" class="process-state-container"></div>
+
+    <h3 class="gantt-title">Gantt Chart</h3>
+    <div id="gantt" class="gantt"></div>
+
+
+    <h3>Process Metrics</h3>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>PID</th>
+                    <th>AT</th>
+                    <th>BT</th>
+                    <th>Priority</th>
+                    <th>CT</th>
+                    <th>TAT</th>
+                    <th>WT</th>
+                    <th>RT</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="resultTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<section
+    id="comparison"
+    class="panel hidden"
+>
+
+    <h2>Algorithm Comparison</h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Algorithm</th>
+                <th>Avg WT</th>
+                <th>Avg TAT</th>
+                <th>Avg RT</th>
+                <th>CPU Utilization</th>
+                <th>Context Switches</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="comparisonTable">
+
+        </tbody>
+
+    </table>
+
+</section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
